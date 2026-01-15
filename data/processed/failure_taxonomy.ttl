@@ -1,0 +1,25 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://example.org/fda/quality/failure_type/cgmp_violation> a skos:Concept ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:prefLabel "CGMP Violation"@en .
+
+<http://example.org/fda/quality/failure_type/impurity_contamination> a skos:Concept ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:prefLabel "Impurity/Contamination"@en .
+
+<http://example.org/fda/quality/failure_type/specification_failure> a skos:Concept ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:prefLabel "Specification Failure"@en .
+
+<http://example.org/fda/quality/failure_type/sterility_issue> a skos:Concept ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:prefLabel "Sterility Issue"@en .
+
+<http://example.org/fda/quality/scheme/failure_types> a skos:ConceptScheme ;
+    skos:hasTopConcept <http://example.org/fda/quality/failure_type/cgmp_violation>,
+        <http://example.org/fda/quality/failure_type/impurity_contamination>,
+        <http://example.org/fda/quality/failure_type/specification_failure>,
+        <http://example.org/fda/quality/failure_type/sterility_issue> ;
+    skos:prefLabel "FDA Failure Types"@en .
+

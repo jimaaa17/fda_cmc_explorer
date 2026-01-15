@@ -1,0 +1,60 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.env
+.pytest_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# --- Node.js / Next.js ---
+node_modules/
+.next/
+dist/
+build/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# --- IDEs ---
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Docker ---
+docker-data/
+
+# --- Data Science & Pipeline ---
+# Ignore raw data (usually large or PII)
+data/raw/*
+!data/raw/.gitkeep
+
+# Ignore processed/generated data, but keep schemas/ontologies
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/ontology.ttl
+!data/processed/failure_taxonomy.ttl
+!data/processed/ontology_docs.md
+
+# Ignore Fuseki Runtime Artifacts (since we mapped data/processed to /fuseki)
+data/processed/run/
+data/processed/system/
+data/processed/system_files/
+data/processed/backups/
+data/processed/databases/
+data/processed/logs/
+data/processed/configuration/
+data/processed/*.db
+
+# --- Miscellaneous ---
+*.log
+tmp/
