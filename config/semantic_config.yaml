@@ -1,0 +1,16 @@
+# PoolParty API Configuration
+# Rename this file to poolparty_config.yaml (this is a template)
+
+poolparty:
+  server_url: "https://your-poolparty-server:port"
+  project_id: "your-project-guid"
+  username: "api_user"
+  password: "api_password" # Use env vars in production!
+  
+ingestion:
+  default_language: "en"
+  fail_on_error: true
+
+knowledge_graph:
+  scheme_uri: "http://example.org/fda-quality/scheme"
+  base_uri: "http://example.org/fda-quality/"

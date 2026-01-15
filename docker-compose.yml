@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  fuseki:
+    image: stain/jena-fuseki
+    container_name: fda-fuseki
+    ports:
+      - "3030:3030"
+    environment:
+      - ADMIN_PASSWORD=admin
+    volumes:
+      - ./data/processed:/fuseki
+    # Command to create a persistent TDB2 dataset named 'fda'
+    command: /jena-fuseki/fuseki-server --file=/fuseki/fda_knowledge_graph_enriched.ttl /fda
+
+  skosmos:
+    image: quay.io/natlibfi/skosmos:latest
+    container_name: fda-skosmos
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/skosmos/config.ttl:/var/www/html/config.ttl
+      - ./config/skosmos/vocabularies.ttl:/var/www/html/vocabularies.ttl
+    depends_on:
+      - fuseki
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.9
+    container_name: fda-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+
+  web:
+    build: ./src/web
+    container_name: fda-web
+    ports:
+      - "3000:3000"
+    environment:
+      - ES_HOST=http://elasticsearch:9200
+      - FUSEKI_HOST=http://fuseki:3030
+    depends_on:
+      - elasticsearch
+      - fuseki

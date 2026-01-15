@@ -1,0 +1,16 @@
+@prefix skosmos: <http://purl.org/net/skosmos#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix voilet: <http://purl.org/net/voilet#> .
+
+# Skosmos main configuration
+
+<http://purl.org/net/skosmos> a skosmos:Configuration ;
+    rdfs:label "FDA Quality Thesaurus" ;
+    skosmos:sparqlEndpoint <http://fuseki:3030/fda/sparql> ;
+    skosmos:sparqlTimeout 20 ;
+    skosmos:httpTimeout 5 ;
+    skosmos:logDir "/tmp" ;
+    skosmos:globalPlugins () .
