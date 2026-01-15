@@ -1,0 +1,30 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix fda: <http://example.org/fda/quality/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+fda:RecallEventShape
+    a sh:NodeShape ;
+    sh:targetClass fda:RecallEvent ;
+    sh:property [
+        sh:path fda:recallNumber ;
+        sh:minCount 1 ;
+        sh:message "Every recall event must have a recall number." ;
+    ] ;
+    sh:property [
+        sh:path fda:recallingFirm ;
+        sh:minCount 1 ;
+        sh:message "Every recall event must have a recalling firm." ;
+        sh:datatype xsd:string ;
+    ] ;
+    sh:property [
+        sh:path dcterms:date ;
+        sh:minCount 1 ;
+        sh:message "Every recall event must have a report date." ;
+        sh:datatype xsd:string ; # Should ideally be xsd:date but data is string YYYYMMDD
+    ] ;
+    sh:property [
+        sh:path fda:hasFailureType ;
+        sh:minCount 1 ;
+        sh:message "Every recall event should have a classified failure type." ;
+    ] .

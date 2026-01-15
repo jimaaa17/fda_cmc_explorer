@@ -1,0 +1,32 @@
+@prefix fda: <http://example.org/fda/quality/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+fda:ontology a owl:Ontology ;
+    dcterms:title "FDA Quality Event Ontology" ;
+    dcterms:description "An ontology representing FDA drug enforcement reports and quality events." ;
+    dcterms:created "2024-01-01" .
+
+fda:RecallEvent a rdfs:Class ;
+    rdfs:label "Recall Event" ;
+    rdfs:comment "An event where a manufacturer removes or corrects a marketed product that violates laws." .
+
+fda:recallNumber a rdf:Property ;
+    rdfs:label "Recall Number" ;
+    rdfs:domain fda:RecallEvent ;
+    rdfs:range rdfs:Literal .
+
+fda:reasonForRecall a rdf:Property ;
+    rdfs:label "Reason for Recall" ;
+    rdfs:comment "The reason given by the firm for why the product is being recalled." ;
+    rdfs:domain fda:RecallEvent ;
+    rdfs:range rdfs:Literal .
+
+fda:hasFailureType a rdf:Property ;
+    rdfs:label "Has Failure Type" ;
+    rdfs:comment "Links the event to a specific failure category (concept)." ;
+    rdfs:domain fda:RecallEvent ;
+    rdfs:range skos:Concept .
