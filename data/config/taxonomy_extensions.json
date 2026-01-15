@@ -1,0 +1,41 @@
+{
+    "extensions": [
+        {
+            "term": "AI Hallucination",
+            "domain": "Device Malfunction",
+            "category": "Software Algorithm Error",
+            "definition": "Generative AI component producing factually incorrect or nonsensical output.",
+            "examples": [
+                "Chatbot diagnostic assistant invented a non-existent drug interaction.",
+                "Radiology AI highlighted a tumor in empty space."
+            ]
+        },
+        {
+            "term": "Quantum Interference",
+            "domain": "Device Malfunction",
+            "category": "Sensor Issue",
+            "definition": "disruption of quantum sensor readings due to external coherence loss.",
+            "examples": [
+                "MRI quantum sensor lost coherence due to nearby 5G tower."
+            ]
+        },
+        {
+            "term": "Cybersecurity Ransomware",
+            "domain": "Device Malfunction",
+            "category": "Software Algorithm Error",
+            "definition": "Malicious encryption of device data demanding payment.",
+            "examples": [
+                "Insulin pump locked by ransomware requiring bitcoin payment."
+            ]
+        },
+        {
+            "term": "Supply Chain Fake",
+            "domain": "Manufacturing",
+            "category": "Impurity/Contamination",
+            "definition": "Counterfeit raw materials introduced into the supply chain.",
+            "examples": [
+                "Received barrels of fake glycerin containing diethylene glycol."
+            ]
+        }
+    ]
+}

@@ -51,6 +51,14 @@ def transform_to_rdf(input_file, output_file):
              # Format YYYYMMDD to proper XSD Date if needed, for now using string
             g.add((event_uri, DCTERMS.date, Literal(record["report_date"])))
 
+        # Link to OpenFDA Source
+        if record.get("openfda_id"):
+            # Construct the API link (using searching by ID as proxy to the record source)
+            # Or just a general link since there isn't a direct "view" URL for an API record, 
+            # but we can link to the API call.
+            api_link = f"https://api.fda.gov/drug/enforcement.json?search=id:{record['openfda_id']}"
+            g.add((event_uri, FDA.sourceAPI, Literal(api_link, datatype=XSD.anyURI)))
+
         # Link to Failure Type Concept
         failure_type = record.get("failure_type")
         if failure_type:

@@ -2,47 +2,80 @@ import requests
 import json
 import os
 
-# Configuration
-API_URL = "https://api.fda.gov/drug/enforcement.json"
-LIMIT = 200
-SEARCH_TERMS = [
-    "reason_for_recall:impurity",
-    "reason_for_recall:impurities",
-    "reason_for_recall:sterility",
-    "reason_for_recall:sterile",
-    "reason_for_recall:cgmp",
-    "reason_for_recall:gmp",
-    "reason_for_recall:batch",
-    "reason_for_recall:contamination",
-    "reason_for_recall:microbial",
-    "reason_for_recall:failed"
-]
+class OpenFDAConnector:
+    """Fetch real enforcement data from openFDA API"""
+    
+    BASE_URL = "https://api.fda.gov"
+    
+    @staticmethod
+    def get_drug_enforcement(search_terms, limit=100):
+        """Fetch drug enforcement records matching quality issues"""
+        url = f"{OpenFDAConnector.BASE_URL}/drug/enforcement.json"
+        
+        # Construct query: (term1) OR (term2) ...
+        # Join terms with OR
+        search_query = " OR ".join(search_terms)
+        
+        params = {
+            "search": f'reason_for_recall:({search_query})',
+            "limit": limit
+        }
+        
+        print(f"Fetching data from {url} with params: {params}")
+        try:
+            response = requests.get(url, params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching data: {e}")
+            return None
 
-# Path handling for Data Science scaffold
-# Script is in src/ingestion/, data is in data/raw/
+    @staticmethod
+    def get_all_enforcement_by_reason(limit=500):
+        """
+        Fetches a large sample of enforcement reports to manually aggregate reasons,
+        since the API does not support counting on text fields.
+        """
+        url = f"{OpenFDAConnector.BASE_URL}/drug/enforcement.json"
+        
+        # We fetch records, not counts
+        params = {
+            "limit": limit,
+             # We only need the reason field to analyze
+            "search": "_exists_:reason_for_recall"
+        }
+        try:
+            response = requests.get(url, params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching aggregate sample: {e}")
+            return None
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching aggregation data: {e}")
+            return None
+
+# Configuration
+SEARCH_TERMS = [
+    "impurity",
+    "impurities",
+    "sterility",
+    "sterile",
+    "cgmp",
+    "gmp",
+    "batch",
+    "contamination",
+    "microbial",
+    "failed"
+]
+LIMIT = 200
+
+# Path handling
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA_DIR = os.path.join(BASE_DIR, "data", "raw")
 OUTPUT_FILE = os.path.join(DATA_DIR, "fda_quality_events.json")
-
-def fetch_data():
-    """Fetches data from openFDA API."""
-    # Construct query: (term1) OR (term2) ...
-    # requests will URL-encode the spaces to + or %20 which is acceptable
-    search_query = " OR ".join(SEARCH_TERMS)
-    
-    params = {
-        "search": search_query,
-        "limit": LIMIT
-    }
-    
-    print(f"Fetching data from {API_URL}...")
-    try:
-        response = requests.get(API_URL, params=params)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching data: {e}")
-        return None
 
 def extract_fields(record):
     """Extracts relevant fields from a single API record."""
@@ -62,7 +95,7 @@ def extract_fields(record):
     elif "batch" in lower_reason:
         failure_type = "Batch Record Issue"
     elif "failed" in lower_reason:
-         failure_type = "Specification Failure"
+          failure_type = "Specification Failure"
 
     return {
         "event_id": record.get("event_id"),
@@ -76,17 +109,22 @@ def extract_fields(record):
         "report_date": record.get("report_date"),
         "country": record.get("country"),
         "state": record.get("state"),
-        "city": record.get("city")
+        "city": record.get("city"),
+        "openfda_id": record.get("id", "") # Capture ID for linking
     }
 
 def main():
-    data = fetch_data()
+    print("Starting OpenFDA Ingestion...")
+    data = OpenFDAConnector.get_drug_enforcement(SEARCH_TERMS, LIMIT)
     
     if data and "results" in data:
         results = data["results"]
         print(f"Found {len(results)} records.")
         
         extracted_data = [extract_fields(r) for r in results]
+        
+        # Ensure output directory exists
+        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
         
         # Save to file
         with open(OUTPUT_FILE, "w") as f:

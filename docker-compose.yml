@@ -11,7 +11,7 @@ services:
     volumes:
       - ./data/processed:/fuseki
     # Command to create a persistent TDB2 dataset named 'fda'
-    command: /jena-fuseki/fuseki-server --file=/fuseki/fda_knowledge_graph_enriched.ttl /fda
+    command: /jena-fuseki/fuseki-server --file=/fuseki/full_graph.ttl /fda
 
   skosmos:
     image: quay.io/natlibfi/skosmos:latest
@@ -34,7 +34,10 @@ services:
       - "9200:9200"
 
   web:
-    build: ./src/web
+    build:
+      context: ./src/web
+      args:
+        NEXT_PUBLIC_SKOSMOS_URL: http://localhost:80
     container_name: fda-web
     ports:
       - "3000:3000"

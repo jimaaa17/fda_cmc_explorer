@@ -1,25 +1,233 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://example.org/fda/quality/failure_type/cgmp_violation> a skos:Concept ;
+<http://example.org/fda/quality/failure_type/ai-hallucination> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/failure_type/software-algorithm-error> ;
+    skos:definition "Generative AI component producing factually incorrect or nonsensical output."@en ;
+    skos:example "Chatbot diagnostic assistant invented a non-existent drug interaction."@en,
+        "Radiology AI highlighted a tumor in empty space."@en ;
     skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:prefLabel "AI Hallucination"@en .
+
+<http://example.org/fda/quality/failure_type/batch-record-issue> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/manufacturing> ;
+    skos:example "Presence of Particulate Matter: Certain batches of Atorvastatin tablets 10 mg, 20 mg and 40 mg may c..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 1 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Batch Record Issue"@en .
+
+<http://example.org/fda/quality/failure_type/battery-failure> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/device-malfunction> ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Source: OpenFDA"@en ;
+    skos:prefLabel "Battery Failure"@en .
+
+<http://example.org/fda/quality/failure_type/carton-insert-error> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/packaging--labeling> ;
+    skos:example "Defective Container: blister packs not properly sealed resulting in tablets being loose in the carto..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 1 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Carton/Insert Error"@en .
+
+<http://example.org/fda/quality/failure_type/cgmp-violation> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/manufacturing> ;
+    skos:example "CGMP Deviations: Next Advanced Antibacterial Hand Sanitizer was found to be below the label claim fo..."@en,
+        "CGMP Deviations: Products were manufactured with contaminated excipient that was recalled from the e..."@en,
+        "CGMP deviations..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 81 records"@en,
+        "Source: OpenFDA"@en ;
     skos:prefLabel "CGMP Violation"@en .
 
-<http://example.org/fda/quality/failure_type/impurity_contamination> a skos:Concept ;
+<http://example.org/fda/quality/failure_type/component-failure> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/device-malfunction> ;
     skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
-    skos:prefLabel "Impurity/Contamination"@en .
+    skos:note "Source: OpenFDA"@en ;
+    skos:prefLabel "Component Failure"@en .
 
-<http://example.org/fda/quality/failure_type/specification_failure> a skos:Concept ;
+<http://example.org/fda/quality/failure_type/cybersecurity-ransomware> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/failure_type/software-algorithm-error> ;
+    skos:definition "Malicious encryption of device data demanding payment."@en ;
+    skos:example "Insulin pump locked by ransomware requiring bitcoin payment."@en ;
     skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:prefLabel "Cybersecurity Ransomware"@en .
+
+<http://example.org/fda/quality/failure_type/dissolution-failure> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/quality-control> ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Source: OpenFDA"@en ;
+    skos:prefLabel "Dissolution Failure"@en .
+
+<http://example.org/fda/quality/failure_type/expiration-date-issue> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/packaging--labeling> ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Source: OpenFDA"@en ;
+    skos:prefLabel "Expiration Date Issue"@en .
+
+<http://example.org/fda/quality/failure_type/labeling-error> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/packaging--labeling> ;
+    skos:example "Labeling: Incorrect or Missing Lot and/or Exp Date: Beyond Use Date (BUD) exceed the BUD/EXP of at l..."@en,
+        "Labeling: Incorrect or missing lot and or Exp Date: The bottles were labeled with an incorrect expir..."@en,
+        "Labeling; Label Mix up; cartons labeled as Amantadine HCl 100 mg Capsules contain unit dose blister ..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 45 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Labeling Error"@en .
+
+<http://example.org/fda/quality/failure_type/packaging-defect> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/packaging--labeling> ;
+    skos:example "Defective container: products are packaged in pouches which may not have been fully sealed..."@en,
+        "Stability Data Does Not Support Expiry: potential loss of potency in drugs packaged and stored in sy..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 5 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Packaging Defect"@en .
+
+<http://example.org/fda/quality/failure_type/particulate-matter> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/manufacturing> ;
+    skos:example "Presence of Particulate Matter: visible crystalline particulates and the discovery of crystalline pa..."@en,
+        "Presence of Particulate; lot being recalled as a precaution due to the discovery of 2 particles foun..."@en,
+        "Presence of particulate matter - this recall is due to a recent Hospira recall of vancomyicn hydroch..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 6 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Particulate Matter"@en .
+
+<http://example.org/fda/quality/failure_type/quantum-interference> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/failure_type/sensor-issue> ;
+    skos:definition "disruption of quantum sensor readings due to external coherence loss."@en ;
+    skos:example "MRI quantum sensor lost coherence due to nearby 5G tower."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:prefLabel "Quantum Interference"@en .
+
+<http://example.org/fda/quality/failure_type/specification-failure> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/quality-control> ;
+    skos:example "Failed Content Uniformity Specifications: Product was manufactured using an adulterated active pharm..."@en,
+        "Failed Impurities/Degradation Specifications..."@en,
+        "Failed Tablet/Capsule Specifications: Broken tablets..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 46 records"@en,
+        "Source: OpenFDA"@en ;
     skos:prefLabel "Specification Failure"@en .
 
-<http://example.org/fda/quality/failure_type/sterility_issue> a skos:Concept ;
+<http://example.org/fda/quality/failure_type/stability-failure> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/quality-control> ;
+    skos:example "Presence of Foreign Substance; heavy metals (chromium, titanium etc) and inactive components of the ..."@en,
+        "Stability testing failures for one or two of the four active pharmaceutical ingredients among the fi..."@en,
+        "Sub-Potent Drug: Subpotent assay results during stability testing...."@en ;
     skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 3 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Stability Failure"@en .
+
+<http://example.org/fda/quality/failure_type/sterility-issue> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/manufacturing> ;
+    skos:example "Lack of Assurance of Sterility..."@en,
+        "Lack of Assurance of Sterility:  A recall of all compounded sterile preparations within expiry is be..."@en,
+        "Presence of Particulate Matter: API contaminated with glass particulate was used to produce sterile ..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 174 records"@en,
+        "Source: OpenFDA"@en ;
     skos:prefLabel "Sterility Issue"@en .
 
+<http://example.org/fda/quality/failure_type/subpotent> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/quality-control> ;
+    skos:example "Subpotent (Single Ingredient Drug): Low assay at the 6-month test interval...."@en,
+        "Subpotent Drug..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 5 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Subpotent"@en .
+
+<http://example.org/fda/quality/failure_type/superpotent> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/quality-control> ;
+    skos:example "Superpotent Drug: The vitamin supplement contains an extremely high level of vitamin D3 (Cholecalcif..."@en,
+        "Superpotent Drug: recalled lots may have higher concentration of ibuprofen...."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:note "Frequency: 2 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Superpotent"@en .
+
+<http://example.org/fda/quality/failure_type/supply-chain-fake> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/failure_type/impurity-contamination> ;
+    skos:definition "Counterfeit raw materials introduced into the supply chain."@en ;
+    skos:example "Received barrels of fake glycerin containing diethylene glycol."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:prefLabel "Supply Chain Fake"@en .
+
+<http://example.org/fda/quality/failure_type/impurity-contamination> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/manufacturing> ;
+    skos:example "CGMP Deviations: Repackaging firm recalling due to potential product cross contamination concerns at..."@en,
+        "Penicillin Cross Contamination: All lots of all products repackaged and distributed between 01/05/12..."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:narrower <http://example.org/fda/quality/failure_type/supply-chain-fake> ;
+    skos:note "Frequency: 78 records"@en,
+        "Source: OpenFDA"@en ;
+    skos:prefLabel "Impurity/Contamination"@en .
+
+<http://example.org/fda/quality/failure_type/sensor-issue> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/device-malfunction> ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:narrower <http://example.org/fda/quality/failure_type/quantum-interference> ;
+    skos:note "Source: OpenFDA"@en ;
+    skos:prefLabel "Sensor Issue"@en .
+
+<http://example.org/fda/quality/failure_type/software-algorithm-error> a skos:Concept ;
+    skos:broader <http://example.org/fda/quality/domain/device-malfunction> ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:narrower <http://example.org/fda/quality/failure_type/ai-hallucination>,
+        <http://example.org/fda/quality/failure_type/cybersecurity-ransomware> ;
+    skos:note "Source: OpenFDA"@en ;
+    skos:prefLabel "Software Algorithm Error"@en .
+
+<http://example.org/fda/quality/domain/device-malfunction> a skos:Concept ;
+    skos:definition "Failures related to mechanical, software, or electrical device components."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:narrower <http://example.org/fda/quality/failure_type/battery-failure>,
+        <http://example.org/fda/quality/failure_type/component-failure>,
+        <http://example.org/fda/quality/failure_type/sensor-issue>,
+        <http://example.org/fda/quality/failure_type/software-algorithm-error> ;
+    skos:prefLabel "Device Malfunction"@en ;
+    skos:topConceptOf <http://example.org/fda/quality/scheme/failure_types> .
+
+<http://example.org/fda/quality/domain/packaging--labeling> a skos:Concept ;
+    skos:definition "Failures related to product identification, packaging integrity, and labeling."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:narrower <http://example.org/fda/quality/failure_type/carton-insert-error>,
+        <http://example.org/fda/quality/failure_type/expiration-date-issue>,
+        <http://example.org/fda/quality/failure_type/labeling-error>,
+        <http://example.org/fda/quality/failure_type/packaging-defect> ;
+    skos:prefLabel "Packaging & Labeling"@en ;
+    skos:topConceptOf <http://example.org/fda/quality/scheme/failure_types> .
+
+<http://example.org/fda/quality/domain/manufacturing> a skos:Concept ;
+    skos:definition "Failures related to production, facilities, and equipment."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:narrower <http://example.org/fda/quality/failure_type/batch-record-issue>,
+        <http://example.org/fda/quality/failure_type/cgmp-violation>,
+        <http://example.org/fda/quality/failure_type/impurity-contamination>,
+        <http://example.org/fda/quality/failure_type/particulate-matter>,
+        <http://example.org/fda/quality/failure_type/sterility-issue> ;
+    skos:prefLabel "Manufacturing"@en ;
+    skos:topConceptOf <http://example.org/fda/quality/scheme/failure_types> .
+
+<http://example.org/fda/quality/domain/quality-control> a skos:Concept ;
+    skos:definition "Failures related to testing, specifications, and stability."@en ;
+    skos:inScheme <http://example.org/fda/quality/scheme/failure_types> ;
+    skos:narrower <http://example.org/fda/quality/failure_type/dissolution-failure>,
+        <http://example.org/fda/quality/failure_type/specification-failure>,
+        <http://example.org/fda/quality/failure_type/stability-failure>,
+        <http://example.org/fda/quality/failure_type/subpotent>,
+        <http://example.org/fda/quality/failure_type/superpotent> ;
+    skos:prefLabel "Quality Control"@en ;
+    skos:topConceptOf <http://example.org/fda/quality/scheme/failure_types> .
+
 <http://example.org/fda/quality/scheme/failure_types> a skos:ConceptScheme ;
-    skos:hasTopConcept <http://example.org/fda/quality/failure_type/cgmp_violation>,
-        <http://example.org/fda/quality/failure_type/impurity_contamination>,
-        <http://example.org/fda/quality/failure_type/specification_failure>,
-        <http://example.org/fda/quality/failure_type/sterility_issue> ;
+    skos:definition "Hierarchical vocabulary with dynamic extensions."@en ;
+    skos:hasTopConcept <http://example.org/fda/quality/domain/device-malfunction>,
+        <http://example.org/fda/quality/domain/manufacturing>,
+        <http://example.org/fda/quality/domain/packaging--labeling>,
+        <http://example.org/fda/quality/domain/quality-control> ;
     skos:prefLabel "FDA Failure Types"@en .
 

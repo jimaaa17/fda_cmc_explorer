@@ -216,9 +216,9 @@ export default function Home() {
             </p>
           </div>
 
-          {selectedNode.type && (
+          {selectedNode.id && selectedNode.id.includes('/fda/quality/failure_type/') && (
             <a
-              href={`http://localhost:80/fda/en/page/?uri=${encodeURIComponent(selectedNode.id)}`}
+              href={`${process.env.NEXT_PUBLIC_SKOSMOS_URL || 'http://localhost:80'}/fda/en/page/?uri=${encodeURIComponent(selectedNode.id)}`}
               target="_blank"
               className={styles.skosLink}
             >

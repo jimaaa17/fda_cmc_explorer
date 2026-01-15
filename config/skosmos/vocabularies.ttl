@@ -4,12 +4,15 @@
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix void: <http://rdfs.org/ns/void#> .
 @prefix fda: <http://example.org/fda/quality/> .
+@prefix : <http://example.org/fda/quality/> .
 
 :fda-vocab a skosmos:Vocabulary, void:Dataset ;
     dc:title "FDA Failure Types"@en ;
     skosmos:shortName "FDA" ;
     dc:subject :cat_health ;
-    void:uriSpace "http://example.org/" ;
+    void:uriSpace "http://example.org/fda/quality/" ;
+    skosmos:sparqlEndpoint <http://fuseki:3030/fda/sparql> ;
     skosmos:language "en" ;
     skosmos:defaultLanguage "en" ;
-    skosmos:showTopConcepts true .
+    skosmos:showTopConcepts true ;
+    skosmos:mainConceptScheme <http://example.org/fda/quality/scheme/failure_types> .
